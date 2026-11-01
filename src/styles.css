@@ -1,0 +1,67 @@
+#root {
+  min-height: 100vh;
+}
+
+.page-loading {
+  position: fixed;
+  z-index: 10002;
+  inset: 0;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.page-error,
+.not-found {
+  display: grid;
+  min-height: 100vh;
+  align-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.page-error a,
+.not-found a {
+  color: inherit;
+}
+
+body.is-preloading::before {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  background-color: var(--_colors---background--bg, #fff);
+  content: "";
+  pointer-events: none;
+}
+
+.preloader-wrap.is-active {
+  position: fixed !important;
+  z-index: 10001 !important;
+  inset: 0 !important;
+}
+
+.route-transition-curtain {
+  position: fixed;
+  z-index: 2147483647;
+  inset: 0;
+  background-color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 450ms ease,
+    visibility 0s linear 450ms;
+  visibility: hidden;
+}
+
+.route-transition-curtain.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transition: none;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-transition-curtain {
+    transition-duration: 0s;
+  }
+}
